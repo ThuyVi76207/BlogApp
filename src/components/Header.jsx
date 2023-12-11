@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { images } from '../constants';
+import { IoIosMenu } from 'react-icons/io';
+import { IoMdClose } from 'react-icons/io';
 
 const navItemInfo = [
   { name: 'Home' },
@@ -23,13 +25,31 @@ const NavItem = ({ name }) => {
 };
 
 const Header = () => {
+  const [navIsVisible, setNavIsVisible] = useState(false);
+  const navVisibilityHandler = () => {
+    setNavIsVisible((curState) => {
+      return !curState;
+    });
+  };
+
   return (
     <section>
       <header className="container mx-auto px-5 flex justify-between py-4 items-center">
         <div>
-          <img src={images.Logo} alt="logo"></img>
+          <img className="w-16" src={images.Logo} alt="logo"></img>
         </div>
-        <div className="flex gap-x-9 items-center">
+        <div className="z-50">
+          {navIsVisible ? (
+            <IoIosMenu className="w-6 h-6" onClick={navVisibilityHandler} />
+          ) : (
+            <IoMdClose className="w-6 h-6" onClick={navVisibilityHandler} />
+          )}
+        </div>
+        <div
+          className={`${
+            navIsVisible ? 'right-0' : '-right-full'
+          } z-[49] flex flex-col w-full justify-center lg:w-full lg:justify-end lg:flex-row fixed top-0 bottom-0  lg:static gap-x-9 items-center`}
+        >
           <ul className="flex gap-x-2 font-semibold">
             {navItemInfo.map((item) => {
               return <NavItem key={item.name} name={item.name} />;
