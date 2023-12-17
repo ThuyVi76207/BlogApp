@@ -71,16 +71,16 @@ const Header = () => {
   };
 
   return (
-    <section>
+    <section className="sticky top-0 left-0 right-0 z-50">
       <header className="container mx-auto px-5 flex justify-between py-4 items-center">
         <div>
           <img className="w-16" src={images.Logo} alt="logo"></img>
         </div>
         <div className="lg:hidden z-50">
           {navIsVisible ? (
-            <IoIosMenu className="w-6 h-6" onClick={navVisibilityHandler} />
-          ) : (
             <IoMdClose className="w-6 h-6" onClick={navVisibilityHandler} />
+          ) : (
+            <IoIosMenu className="w-6 h-6" onClick={navVisibilityHandler} />
           )}
         </div>
         <div
