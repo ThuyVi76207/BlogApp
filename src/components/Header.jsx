@@ -40,19 +40,18 @@ const NavItem = ({ item }) => {
           </button>
           <div
             className={`${
-              dropdown ? 'block' : 'hidden'
-            } hidden transition-all duration-500 pt-4 lg:absolute lg:bottom-0 lg:right-0 lg:transform lg:translate-y-full lg:group-hover:block w-max`}
+              dropdown ? 'hidden' : 'block'
+            } hidden  transition-all duration-500 pt-4 lg:absolute lg:bottom-0 lg:right-0 lg:transform lg:translate-y-full lg:group-hover:block w-max`}
           >
             <ul className="bg-dark-soft lg:bg-transparent text-center flex flex-col shadow-lg rounded-lg overflow-hidden">
               {item.items?.map((page) => (
-                <li key={page}>
-                  <a
-                    href="/"
-                    className="hover:bg-dark-hard hover:text-white px-4 py-2 lg:text-dark-soft"
-                  >
-                    {page}
-                  </a>
-                </li>
+                <a
+                  key={page}
+                  href="/"
+                  className="hover:bg-dark-hard hover:text-white px-4 py-2 lg:text-dark-soft"
+                >
+                  {page}
+                </a>
               ))}
             </ul>
           </div>
