@@ -19,7 +19,7 @@ const CTA = () => {
         />
       </svg>
       <section className="relative bg-dark-hard px-5">
-        <div className="container grid grid-cols-12 mx-auto">
+        <div className="container grid grid-cols-12 mx-auto py-10">
           <div className="col-span-12">
             <h2 className="text-white font-roboto font-bold text-2xl">
               Get out stories delivered From us to your inbox
@@ -34,6 +34,13 @@ const CTA = () => {
                 Get started
               </button>
             </div>
+            <p className="text-dark-light text-sm leading-7 mt-6">
+              <span className="font-bold italic text-[#B3BAC5]">
+                Get a response tomorrow
+              </span>{' '}
+              if you submit by 9pm today. If we received after 9pm will get a
+              reponse the following day.
+            </p>
           </div>
         </div>
       </section>
