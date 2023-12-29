@@ -1,7 +1,92 @@
 import React from 'react';
 
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <section className="bg-dark-hard">
+      <footer className="container mx-auto grid grid-cols-10">
+        <div className="col-span-5">
+          <h3 className="text-dark-light font-bold">Product</h3>
+          <ul className="text-[#959EAD] text-sm mt-5 space-y-4">
+            <li>
+              <a href="/">Landingpage</a>
+            </li>
+            <li>
+              <a href="/">Features</a>
+            </li>
+            <li>
+              <a href="/">Documenttation</a>
+            </li>
+            <li>
+              <a href="/">Refferal Program</a>
+            </li>
+            <li>
+              <a href="/">Pricing</a>
+            </li>
+          </ul>
+        </div>
+        <div className="col-span-5">
+          <h3 className="text-dark-light font-bold">Product</h3>
+          <ul className="text-[#959EAD] text-sm mt-5 space-y-4">
+            <li>
+              <a href="/">Landingpage</a>
+            </li>
+            <li>
+              <a href="/">Features</a>
+            </li>
+            <li>
+              <a href="/">Documenttation</a>
+            </li>
+            <li>
+              <a href="/">Refferal Program</a>
+            </li>
+            <li>
+              <a href="/">Pricing</a>
+            </li>
+          </ul>
+        </div>
+        <div className="col-span-5">
+          <h3 className="text-dark-light font-bold">Product</h3>
+          <ul className="text-[#959EAD] text-sm mt-5 space-y-4">
+            <li>
+              <a href="/">Landingpage</a>
+            </li>
+            <li>
+              <a href="/">Features</a>
+            </li>
+            <li>
+              <a href="/">Documenttation</a>
+            </li>
+            <li>
+              <a href="/">Refferal Program</a>
+            </li>
+            <li>
+              <a href="/">Pricing</a>
+            </li>
+          </ul>
+        </div>
+        <div className="col-span-5">
+          <h3 className="text-dark-light font-bold">Product</h3>
+          <ul className="text-[#959EAD] text-sm mt-5 space-y-4">
+            <li>
+              <a href="/">Landingpage</a>
+            </li>
+            <li>
+              <a href="/">Features</a>
+            </li>
+            <li>
+              <a href="/">Documenttation</a>
+            </li>
+            <li>
+              <a href="/">Refferal Program</a>
+            </li>
+            <li>
+              <a href="/">Pricing</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </section>
+  );
 };
 
 export default Footer;
