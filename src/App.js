@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
-          <Route path="/blog/:id" element={<ArticleDetailPage />}></Route>
+          <Route exact path="/blog/:id" element={<ArticleDetailPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
