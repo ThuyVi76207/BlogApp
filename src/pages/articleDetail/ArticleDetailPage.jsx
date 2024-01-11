@@ -3,6 +3,7 @@ import MainLayout from '../../components/MainLayout';
 import BreadCrumbs from '../../components/BreadCrumbs';
 import { images } from '../../constants';
 import { Link } from 'react-router-dom';
+import SuggestedPost from './container/SuggestedPost';
 
 const breadCrumbData = [
   { name: 'Home', link: '/' },
@@ -42,6 +43,7 @@ const ArticleDetailPage = () => {
             </p>
           </div>
         </article>
+        <SuggestedPost />
       </section>
     </MainLayout>
   );
