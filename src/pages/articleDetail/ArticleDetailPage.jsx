@@ -11,6 +11,43 @@ const breadCrumbData = [
   { name: 'Article tile', link: '/blog/1' },
 ];
 
+const postsData = [
+  {
+    _id: 1,
+    image: images.Post1Image,
+    title: 'Help children get better education',
+    createAt: '2023-01-25T15:53:35.607+0000',
+  },
+  {
+    _id: 2,
+    image: images.Post1Image,
+    title: 'Help children get better education',
+    createAt: '2023-01-25T15:53:35.607+0000',
+  },
+  {
+    _id: 3,
+    image: images.Post1Image,
+    title: 'Help children get better education',
+    createAt: '2023-01-25T15:53:35.607+0000',
+  },
+  {
+    _id: 4,
+    image: images.Post1Image,
+    title: 'Help children get better education',
+    createAt: '2023-01-25T15:53:35.607+0000',
+  },
+];
+
+const tagsData = [
+  'Medical',
+  'Lifestyle',
+  'Learn',
+  'Healthy',
+  'Food',
+  'Diet',
+  'Education',
+];
+
 const ArticleDetailPage = () => {
   return (
     <MainLayout>
@@ -43,7 +80,12 @@ const ArticleDetailPage = () => {
             </p>
           </div>
         </article>
-        <SuggestedPost />
+        <SuggestedPost
+          header={'Latest Article'}
+          posts={postsData}
+          tags={tagsData}
+          className={'mt-8'}
+        />
       </section>
     </MainLayout>
   );

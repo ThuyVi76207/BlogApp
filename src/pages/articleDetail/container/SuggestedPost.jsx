@@ -1,14 +1,45 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const SuggestedPost = ({ className, header, posts = [] }) => {
+const SuggestedPost = ({ className, header, posts = [], tags }) => {
   return (
     <div
       className={`w-full shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-lg p-4 ${className}`}
     >
       <h2 className="font-roboto font-medium text-dark-hard">{header}</h2>
       <div className="grid gap-y-4 mt-5">
-        {posts.map(() => (
-          <div></div>
+        {posts.map((item) => (
+          <div
+            key={item._id}
+            className="flex space-x-3 flex-nowrap items-center"
+          >
+            <img
+              className="aspect-square object-cover rounded-lg w-1/5"
+              src={item.image}
+              alt="laptop"
+            />
+            <div className="text-sm font-roboto text-dark-hard font-medium">
+              <h3>{item.title}</h3>
+              <span className="text-xs opacity-60">
+                {new Date(item.createAt).toLocaleDateString('en-US', {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h2 className="font-roboto font-semibold text-dark-hard mt-8">Tags</h2>
+      <div className="flex flex-wrap gap-x-2 gap-y-2 mt-4">
+        {tags.map((item) => (
+          <Link
+            to={'/'}
+            className="inline-block rounded-md px-3 py-1.5 bg-primary font-roboto text-xs text-white"
+          >
+            {item}
+          </Link>
         ))}
       </div>
     </div>
