@@ -4,6 +4,7 @@ import BreadCrumbs from '../../components/BreadCrumbs';
 import { images } from '../../constants';
 import { Link } from 'react-router-dom';
 import SuggestedPost from './container/SuggestedPost';
+import CommentsContainer from '../../components/Comments/CommentsContainer';
 
 const breadCrumbData = [
   { name: 'Home', link: '/' },
@@ -79,6 +80,7 @@ const ArticleDetailPage = () => {
               lectus proin.
             </p>
           </div>
+          <CommentsContainer className="mt-10" />
         </article>
         <SuggestedPost
           header={'Latest Article'}
