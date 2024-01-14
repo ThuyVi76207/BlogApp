@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import CommentForm from './CommentForm';
 import { getCommentsData } from '../../data/comment';
+import Comment from './Comment';
 
 const CommentsContainer = ({ className }) => {
   const [comments, setComments] = useState([]);
+  const mainComments = comments.filter((comment) => comment.parent === null);
 
   console.log('Check comment', comments);
 
@@ -35,6 +37,11 @@ const CommentsContainer = ({ className }) => {
         btnLabel={'Send'}
         formSubmitHandler={(value) => addCommentHandler(value)}
       />
+      <div className="space-y-4 mt-8">
+        {mainComments.map((comment) => (
+          <Comment comment={comment} />
+        ))}
+      </div>
     </div>
   );
 };
