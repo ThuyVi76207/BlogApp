@@ -2,8 +2,14 @@ import React from 'react';
 import { images } from '../../constants';
 import { FiMessageSquare, FiEdit2, FiTrash } from 'react-icons/fi';
 
-const Comment = ({ comment, logginedUserId }) => {
+const Comment = ({
+  comment,
+  logginedUserId,
+  affeactedComment,
+  setAffectedComment,
+}) => {
   const isUserLoggined = Boolean(logginedUserId);
+  const commentBelongToUser = logginedUserId === comment.user._id;
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
       <img
@@ -27,18 +33,29 @@ const Comment = ({ comment, logginedUserId }) => {
           {comment.desc}
         </p>
         <div className="flex items-center gap-x-3 text-dark-light font-roboto text-sm mt-3 mb-3">
-          <button className="flex items-center space-x-2">
-            <FiMessageSquare className="w-4 h-auto" />
-            <span>Reply</span>
-          </button>
-          <button className="flex items-center space-x-2">
-            <FiEdit2 className="w-4 h-auto" />
-            <span>Edit</span>
-          </button>
-          <button className="flex items-center space-x-2">
-            <FiTrash className="w-4 h-auto" />
-            <span>Delete</span>
-          </button>
+          {isUserLoggined && (
+            <button
+              className="flex items-center space-x-2"
+              onClick={() =>
+                setAffectedComment({ type: 'reply', _id: comment._id })
+              }
+            >
+              <FiMessageSquare className="w-4 h-auto" />
+              <span>Reply</span>
+            </button>
+          )}
+          {commentBelongToUser && (
+            <>
+              <button className="flex items-center space-x-2">
+                <FiEdit2 className="w-4 h-auto" />
+                <span>Edit</span>
+              </button>
+              <button className="flex items-center space-x-2">
+                <FiTrash className="w-4 h-auto" />
+                <span>Delete</span>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

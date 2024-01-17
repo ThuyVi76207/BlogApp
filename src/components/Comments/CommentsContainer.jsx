@@ -6,6 +6,7 @@ import Comment from './Comment';
 const CommentsContainer = ({ className, logginedUserId }) => {
   const [comments, setComments] = useState([]);
   const mainComments = comments.filter((comment) => comment.parent === null);
+  const [affeactedComment, setAffectedComment] = useState(null);
 
   console.log('Check comment', comments);
 
@@ -38,8 +39,14 @@ const CommentsContainer = ({ className, logginedUserId }) => {
         formSubmitHandler={(value) => addCommentHandler(value)}
       />
       <div className="space-y-4 mt-8">
-        {mainComments.map((comment) => (
-          <Comment comment={comment} logginedUserId={logginedUserId} />
+        {mainComments.map((comment, item) => (
+          <Comment
+            key={item}
+            comment={comment}
+            logginedUserId={logginedUserId}
+            affeactedComment={affeactedComment}
+            setAffectedComment={setAffectedComment}
+          />
         ))}
       </div>
     </div>
