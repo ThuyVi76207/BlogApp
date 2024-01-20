@@ -1,15 +1,24 @@
 import React from 'react';
 import { images } from '../../constants';
 import { FiMessageSquare, FiEdit2, FiTrash } from 'react-icons/fi';
+import CommentForm from './CommentForm';
 
 const Comment = ({
   comment,
   logginedUserId,
-  affeactedComment,
+  affectedComment,
   setAffectedComment,
+  addComment,
+  parentId = null,
 }) => {
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongToUser = logginedUserId === comment.user._id;
+  const isReplying =
+    affectedComment &&
+    affectedComment.type === 'replying' &&
+    affectedComment._id === comment._id;
+  const repliedCommentId = parentId ? parentId : comment._id;
+
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
       <img
@@ -37,7 +46,7 @@ const Comment = ({
             <button
               className="flex items-center space-x-2"
               onClick={() =>
-                setAffectedComment({ type: 'reply', _id: comment._id })
+                setAffectedComment({ type: 'replying', _id: comment._id })
               }
             >
               <FiMessageSquare className="w-4 h-auto" />
@@ -57,6 +66,12 @@ const Comment = ({
             </>
           )}
         </div>
+        {isReplying && (
+          <CommentForm
+            btnLabel={'Reply'}
+            formSubmitHandler={(value) => addComment(value, repliedCommentId)}
+          />
+        )}
       </div>
     </div>
   );
