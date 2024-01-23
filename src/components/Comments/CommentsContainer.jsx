@@ -6,7 +6,7 @@ import Comment from './Comment';
 const CommentsContainer = ({ className, logginedUserId }) => {
   const [comments, setComments] = useState([]);
   const mainComments = comments.filter((comment) => comment.parent === null);
-  const [affeactedComment, setAffectedComment] = useState(null);
+  const [affectedComment, setAffectedComment] = useState(null);
 
   console.log('Check comment', comments);
 
@@ -30,7 +30,29 @@ const CommentsContainer = ({ className, logginedUserId }) => {
     setComments((curState) => {
       return [newComment, ...curState];
     });
+    setAffectedComment(null);
   };
+
+  const updateCommentHandler = (value, commentId) => {
+    const updateedComments = comments.map((comment) => {
+      if (comment._id === commentId) {
+        return { ...comment, desc: value };
+      }
+      return comment;
+    });
+    setComments(updateedComments);
+    setAffectedComment(null);
+  };
+
+  const deleteCommentHandler = (commentId) => {
+    const updatedComments = comments.filter((comment) => {
+      return comment._id !== commentId;
+    });
+
+    setComments(updatedComments);
+  };
+
+  console.log('Check affectedComment', affectedComment);
 
   return (
     <div className={`${className}`}>
@@ -44,9 +66,11 @@ const CommentsContainer = ({ className, logginedUserId }) => {
             key={item}
             comment={comment}
             logginedUserId={logginedUserId}
-            affeactedComment={affeactedComment}
+            affectedComment={affectedComment}
             setAffectedComment={setAffectedComment}
             addComment={addCommentHandler}
+            updateComment={updateCommentHandler}
+            deleteComment={deleteCommentHandler}
           />
         ))}
       </div>

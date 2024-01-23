@@ -10,13 +10,22 @@ const Comment = ({
   setAffectedComment,
   addComment,
   parentId = null,
+  updateComment,
+  deleteComment,
 }) => {
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongToUser = logginedUserId === comment.user._id;
+
   const isReplying =
     affectedComment &&
     affectedComment.type === 'replying' &&
     affectedComment._id === comment._id;
+
+  const isEditing =
+    affectedComment &&
+    affectedComment.type === 'editing' &&
+    affectedComment._id === comment._id;
+
   const repliedCommentId = parentId ? parentId : comment._id;
 
   return (
@@ -38,9 +47,19 @@ const Comment = ({
             hour: '2-digit',
           })}
         </span>
-        <p className="font-opensans mt-[10px] text-dark-light">
-          {comment.desc}
-        </p>
+        {!isEditing && (
+          <p className="font-opensans mt-[10px] text-dark-light">
+            {comment.desc}
+          </p>
+        )}
+        {isEditing && (
+          <CommentForm
+            btnLabel={'Update'}
+            formSubmitHandler={(value) => updateComment(value, comment._id)}
+            formcancelHandler={() => setAffectedComment(null)}
+            initialText={comment.desc}
+          />
+        )}
         <div className="flex items-center gap-x-3 text-dark-light font-roboto text-sm mt-3 mb-3">
           {isUserLoggined && (
             <button
@@ -55,11 +74,19 @@ const Comment = ({
           )}
           {commentBelongToUser && (
             <>
-              <button className="flex items-center space-x-2">
+              <button
+                className="flex items-center space-x-2"
+                onClick={() =>
+                  setAffectedComment({ type: 'editing', _id: comment._id })
+                }
+              >
                 <FiEdit2 className="w-4 h-auto" />
                 <span>Edit</span>
               </button>
-              <button className="flex items-center space-x-2">
+              <button
+                className="flex items-center space-x-2"
+                onClick={() => deleteComment(comment._id)}
+              >
                 <FiTrash className="w-4 h-auto" />
                 <span>Delete</span>
               </button>
@@ -70,6 +97,7 @@ const Comment = ({
           <CommentForm
             btnLabel={'Reply'}
             formSubmitHandler={(value) => addComment(value, repliedCommentId)}
+            formcancelHandler={() => setAffectedComment(null)}
           />
         )}
       </div>
