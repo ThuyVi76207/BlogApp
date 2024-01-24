@@ -19,13 +19,13 @@ const CommentsContainer = ({ className, logginedUserId }) => {
 
   const addCommentHandler = (value, parent = null, replyOnUser = null) => {
     const newComment = {
-      _id: '10',
+      _id: Math.random().toString(),
       user: { _id: 'a', name: 'Mohammad Rezaill' },
       desc: value,
       post: '1',
       parent: parent,
       replyOnUser: replyOnUser,
-      createAt: '2023-12-31T17:22:05.092+0000',
+      createAt: new Date().toISOString(),
     };
     setComments((curState) => {
       return [newComment, ...curState];
@@ -52,6 +52,13 @@ const CommentsContainer = ({ className, logginedUserId }) => {
     setComments(updatedComments);
   };
 
+  const getRepliesHandler = (commentId) => {
+    return comments
+      .filter((comment) => comment.parent === commentId)
+      .sort((a, b) => {
+        return new Date(a.createAt).getTime() - new Date(b.createAt).getTime();
+      });
+  };
   console.log('Check affectedComment', affectedComment);
 
   return (
@@ -71,6 +78,7 @@ const CommentsContainer = ({ className, logginedUserId }) => {
             addComment={addCommentHandler}
             updateComment={updateCommentHandler}
             deleteComment={deleteCommentHandler}
+            replies={getRepliesHandler(comment._id)}
           />
         ))}
       </div>

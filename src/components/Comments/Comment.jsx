@@ -12,6 +12,7 @@ const Comment = ({
   parentId = null,
   updateComment,
   deleteComment,
+  replies,
 }) => {
   const isUserLoggined = Boolean(logginedUserId);
   const commentBelongToUser = logginedUserId === comment.user._id;
@@ -27,6 +28,8 @@ const Comment = ({
     affectedComment._id === comment._id;
 
   const repliedCommentId = parentId ? parentId : comment._id;
+
+  console.log('Check reply', replies);
 
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
@@ -99,6 +102,24 @@ const Comment = ({
             formSubmitHandler={(value) => addComment(value, repliedCommentId)}
             formcancelHandler={() => setAffectedComment(null)}
           />
+        )}
+        {replies.length > 0 && (
+          <div>
+            {replies.map((reply) => (
+              <Comment
+                key={reply._id}
+                addComment={addComment}
+                affectedComment={affectedComment}
+                setAffectedComment={setAffectedComment}
+                comment={reply}
+                deleteComment={deleteComment}
+                logginedUserId={logginedUserId}
+                replies={[]}
+                updateComment={updateComment}
+                parentId={comment._id}
+              />
+            ))}
+          </div>
         )}
       </div>
     </div>
